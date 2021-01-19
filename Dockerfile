@@ -33,3 +33,7 @@ RUN : \
     && git config --global user.email "example@example.org" \
     && git config --global user.name "HIBALL Winter School container" \
     && :
+
+RUN mkdir -p /root/.cache/boutiques/production
+ADD fslstats /bin
+ADD zenodo-3240521.json /root/.cache/boutiques/production
