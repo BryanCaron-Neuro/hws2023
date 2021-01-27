@@ -25,7 +25,7 @@ RUN : \
 ENV PATH="/git-annex.linux:${PATH}"
 
 # Install DataLad and Boutiques
-RUN pip install datalad==0.13.1 boutiques
+RUN pip install datalad==0.13.1 boutiques niwidgets
 
 # Configure Git
 # Setup Git for GitHub Actions
