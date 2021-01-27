@@ -1,6 +1,7 @@
 FROM ubuntu:focal
 LABEL maintainer="tristan.glatard@concordia.ca"
 
+# Install Python and other required packages
 RUN : \
     && apt-get -yq update \
     && apt-get install -yq --no-install-recommends \
@@ -23,18 +24,35 @@ RUN : \
         | tar -zxvf - \
     && sh /git-annex.linux/runshell \
     && :
-ENV PATH="/git-annex.linux:${PATH}"
 
 # Install Python dependencies
-RUN  pip install datalad==0.13.1 boutiques niwidgets
+RUN  pip install datalad==0.13.1 boutiques niwidgets notebook==5.*
+
+# Install fslstats
+ADD fslstats /bin
+
+# Create Binder user, see https://mybinder.readthedocs.io/en/latest/tutorials/dockerfile.html
+ARG NB_USER=jovyan
+ARG NB_UID=1000
+ENV USER ${NB_USER}
+ENV NB_UID ${NB_UID}
+ENV HOME /home/${NB_USER}
+
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${NB_USER}
+
+USER ${NB_USER}
 
 # Configure Git
-# Setup Git for GitHub Actions
+ENV PATH="/git-annex.linux:${PATH}"
 RUN : \
     && git config --global user.email "example@example.org" \
     && git config --global user.name "HIBALL Winter School container" \
     && :
 
-RUN mkdir -p /root/.cache/boutiques/production
-ADD fslstats /bin
-ADD zenodo-4472771.json /root/.cache/boutiques/production
+
+# Hack Boutiques descriptor to run on baremetal rather than in container
+RUN mkdir -p ${HOME}/.cache/boutiques/production
+ADD zenodo-4472771.json /${HOME}/.cache/boutiques/production
