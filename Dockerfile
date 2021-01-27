@@ -56,6 +56,8 @@ RUN : \
     && git config --global user.name "HIBALL Winter School container" \
     && :
 
+# disinherit previous entrypoints
+ENTRYPOINT []
 
 # Hack Boutiques descriptor to run on baremetal rather than in container
 RUN mkdir -p ${HOME}/.cache/boutiques/production
