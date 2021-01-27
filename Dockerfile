@@ -26,7 +26,7 @@ RUN : \
     && :
 
 # Install Python dependencies
-RUN  pip install datalad==0.13.1 boutiques notebook==5.* nilearn
+RUN  pip install datalad==0.13.1 boutiques notebook==5.* nilearn matplotlib
 
 # Install fslstats
 ADD fslstats /bin
