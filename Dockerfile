@@ -9,6 +9,7 @@ RUN : \
         curl \
         openssh-client \
         netbase \
+        g++ \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && ln -s /usr/bin/python3 /usr/bin/python \
@@ -24,8 +25,8 @@ RUN : \
     && :
 ENV PATH="/git-annex.linux:${PATH}"
 
-# Install DataLad and Boutiques
-RUN pip install datalad==0.13.1 boutiques
+# Install Python dependencies
+RUN  pip install datalad==0.13.1 boutiques niwidgets
 
 # Configure Git
 # Setup Git for GitHub Actions
