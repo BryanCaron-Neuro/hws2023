@@ -36,4 +36,4 @@ RUN : \
 
 RUN mkdir -p /root/.cache/boutiques/production
 ADD fslstats /bin
-ADD zenodo-3240521.json /root/.cache/boutiques/production
+ADD zenodo-4472771.json /root/.cache/boutiques/production
