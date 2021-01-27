@@ -62,3 +62,4 @@ ENTRYPOINT []
 # Hack Boutiques descriptor to run on baremetal rather than in container
 RUN mkdir -p ${HOME}/.cache/boutiques/production
 ADD zenodo-4472771.json /${HOME}/.cache/boutiques/production
+ENV FSLOUTPUTTYPE=NIFTI_GZ
