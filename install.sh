@@ -9,7 +9,7 @@ chmod +x $MINICONDA_INSTALLER_SCRIPT
 ./$MINICONDA_INSTALLER_SCRIPT -b -f -p $MINICONDA_PREFIX &> /dev/null && echo Installed Conda
 conda install -c conda-forge -y git-annex &> /dev/null && echo Installed git-annex
 apt install netbase &>/dev/null && echo Installed apt packages
-conda install datalad datalad-osf boutiques &> /dev/null && echo Installed DataLad and Boutiques
+pip install datalad datalad-osf boutiques &> /dev/null && echo Installed DataLad and Boutiques
 
 sudo cp fslstats /bin && sudo chmod 755 /bin/fslstats && echo Installed fslstats
 git config --global user.email "example@example.org" && git config --global user.name "HIBALL Winter School container" && echo Configured Git
