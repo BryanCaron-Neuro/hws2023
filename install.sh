@@ -7,6 +7,7 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &> /d
 chmod +x $MINICONDA_INSTALLER_SCRIPT
 ./$MINICONDA_INSTALLER_SCRIPT -b -f -p $MINICONDA_PREFIX &> /dev/null && echo Installed Conda
 conda install -c conda-forge -y git-annex &> /dev/null && echo Installed git-annex
+apt install netbase && Installed apt packages
 pip install datalad datalad-osf boutiques nilearn &> /dev/null && echo Installed Python dependencies
 
 sudo cp fslstats /bin && sudo chmod 755 /bin/fslstats && echo Installed fslstats
