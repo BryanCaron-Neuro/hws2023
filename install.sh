@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
-sudo apt-get install datalad &>/dev/null && echo Installed DataLad
-pip install nilearn boutiques &>/dev/null && echo Installed Python dependencies
+unset PYTHONPATH
+MINICONDA_INSTALLER_SCRIPT=Miniconda3-latest-Linux-x86_64.sh
+MINICONDA_PREFIX=/usr/local
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &> /dev/null && echo Downloaded Conda
+chmod +x $MINICONDA_INSTALLER_SCRIPT
+./$MINICONDA_INSTALLER_SCRIPT -b -f -p $MINICONDA_PREFIX &> /dev/null && echo Installed Conda
+conda install -c conda-forge -y git-annex &> /dev/null && echo Installed git-annex
+pip install datalad datalad-osf boutiques nilearn &> /dev/null && echo Installed Python dependencies
+
 sudo cp fslstats /bin && sudo chmod 755 /bin/fslstats && echo Installed fslstats
 git config --global user.email "example@example.org" && git config --global user.name "HIBALL Winter School container" && echo Configured Git
 mkdir -p $HOME/.cache/boutiques/production && mv zenodo-4472771.json $HOME/.cache/boutiques/production
