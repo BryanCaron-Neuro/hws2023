@@ -14,3 +14,8 @@ pip install datalad datalad-osf boutiques &> /dev/null && echo Installed DataLad
 sudo cp fslstats /bin && sudo chmod 755 /bin/fslstats && echo Installed fslstats
 git config --global user.email "example@example.org" && git config --global user.name "HIBALL Winter School container" && echo Configured Git
 mkdir -p $HOME/.cache/boutiques/production && mv zenodo-4472771.json $HOME/.cache/boutiques/production
+
+chmod +x ./pty.sh
+mv ./pty.sh /bin/ptyrun
+
+
